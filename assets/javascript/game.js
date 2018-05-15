@@ -1,16 +1,20 @@
 // Start Game
-// Game chooses random word from array
-// User presses a letter and only a letter
-// If letter is correct, letter shows on list
-// If letter is wrong, mark as wrong letter and added to area where it says letters already guessed, pushing it multiple times won't change the number of guesses remaining
-// 
+// User presses a letter and only a letter (NO NUMBERS) (convert letter to lowercase)
+// If letter is correct, blank underline changes to letter.
+// If letter is wrong, mark as wrong letter and add to area where it says letters already guessed (pushing it multiple times doesn't reduce the number of guesses remaining)
+// If run out of guess / player loses
+// If guess all letters, player wins
+// Restart game
 
-var console = ['xbox', 'playstation', 'wii', 'dreamcast', 'gamecube', 'sega saturn', 'neo geo', 'nes', 'atari']
+var wins = 0;
+var guessesRemaining = 12;
 
-function askQuestion (list) {
-    for (i = 0; i < list.length; i++);
-}
+var gameSystem = ['Xbox', 'PlayStation', 'Wii', 'GameBoy', 'SNES', 'Dreamcast', 'Gamecube', 'Sega Saturn', 'Neo Geo', 'NES', 'Atari'];
 
+// Game chooses current word from gameSystem array
+var currentWord = gameSystem[Math.floor(Math.random() * gameSystem.length)];
+
+console.log(currentWord);
 
 // Record user input
 document.onkeyup = function (event) {
@@ -18,4 +22,14 @@ document.onkeyup = function (event) {
     console.log(userInput);
 }
 
-document.getElementById("game").innerHTML = "Wins:"
+// console.log(userInput);
+
+var html =
+          "<p>Press any key to get started!</p>" +
+          "<p>Wins: " + wins + "</p>" +
+          "<p>Number of guesses remaining: " + guessesRemaining + "</p>";
+        //   "<p>losses: " + losses + "</p>" +
+        //   "<p>ties: " + ties + "</p>";
+
+// Set the inner HTML contents of the #game div to our html string
+document.querySelector("#game").innerHTML = html;
