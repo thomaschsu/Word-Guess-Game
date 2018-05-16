@@ -3,7 +3,9 @@ var letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 
 var guessedLetters = [];
 var wins = 0;
 var losses = 0;
-var guessesLeft = 9;
+var guessesLeft = 13;
+var gameSystems = ['NES', 'SNES', 'Genesis', 'N64', '' ]
+
 
 // Functions that updates wins, losses, guessesleft
 function updateWins() {
