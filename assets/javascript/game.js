@@ -1,10 +1,10 @@
 // Variables
-var letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+var letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
 var guessedLetters = [];
 var wins = 0;
 var losses = 0;
 var guessesLeft = 13;
-var gameSystems = ['NES', 'SNES', 'Genesis', 'N64', '' ]
+var gameSystems = ['NES', 'SNES', 'Genesis', 'N64', 'Neo Geo', '3DS', 'PlayStation', 'Dreamcast'];
 
 
 // Functions that updates wins, losses, guessesleft
@@ -25,23 +25,24 @@ function updateGuessedLetters() {
 }
 
 function restartGame() {
-    guessesLeft = 9;
+    guessesLeft = 13;
     guessedLetters = [];
 }
 
-renderLetter();
+// Initializers
+renderSystem();
 updateWins();
 updateLosses();
 updateGuessesLeft();
 updateGuessedLetters();
 restartGame();
 
-// Computer chooses random letter
-function renderLetter() {
-    var compRand = letters[Math.floor(Math.random() * letters.length)];
-    console.log(compRand);
+// Computer chooses random console
+function renderSystem() {
+    var randSystem = gameSystems[Math.floor(Math.random() * gameSystems.length)];
+    console.log(randSystem);
 
-    // Player chooses random letter
+    // Player chooses letter
     document.onkeyup = function(event) {
         var playRand = event.key;
         console.log(playRand);
@@ -52,26 +53,26 @@ function renderLetter() {
             (playRand === 'k') || (playRand === 'l') || (playRand === 'm') || (playRand === 'n') || (playRand === 'o') ||
             (playRand === 'p') || (playRand === 'q') || (playRand === 'r') || (playRand === 's') || (playRand === 't') ||
             (playRand === 'u') || (playRand === 'v') || (playRand === 'w') || (playRand === 'x') || (playRand === 'y') ||
-            (playRand === 'z')) {
+            (playRand === 'z') || (playRand === 1) || (playRand === 2) || (playRand === 3) || (playRand === 4) || (playRand === 5) || (playRand === 6) || (playRand === 7) || (playRand === 8) || (playRand === 9) || (playRand === 0)) {
 
-            if (compRand != playRand) {
+            if (randSystem != playRand) {
                 (guessesLeft-- && guessedLetters.push(playRand));
                 updateGuessesLeft();
                 updateGuessedLetters();
             }
 
             // If letter right, mark as a win and restart
-            if (compRand == playRand) {
+            if (randSystem == playRand) {
                 wins++;
                 updateWins();
-                renderLetter();
+                renderSystem();
             }
 
             // If player exhausts all guesses, mark as a loss and restart
             if (guessesLeft == 0) {
                 losses++;
                 updateLosses();
-                renderLetter();
+                renderSystem();
                 restartGame();
             }
 
