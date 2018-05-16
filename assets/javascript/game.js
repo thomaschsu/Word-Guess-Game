@@ -1,15 +1,25 @@
+// Computer chooses random console
+// Computer outputs blank areas for current word
+// Computer tells you how many guesses remaining
+// After every guess, guess moves to already guessed or replaces a blank in the current word
+// Play song after winning & change picture & update H1
+
 // Variables
-var letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+var letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 var guessedLetters = [];
 var wins = 0;
 var losses = 0;
 var guessesLeft = 13;
-var gameSystems = ['NES', 'SNES', 'Genesis', 'N64', 'Neo Geo', '3DS', 'PlayStation', 'Dreamcast'];
-
+var gameSystems = ['NES', 'SNES', 'Genesis', 'PlayStation', 'Dreamcast'];
+var blank = "_";
 
 // Functions that updates wins, losses, guessesleft
 function updateWins() {
     document.querySelector("#wins").innerHTML = "Wins: " + wins;
+}
+
+function currentWord() {
+    document.querySelector("#currentWord").innerHTML = "Current Word: " + blank;
 }
 
 function updateLosses() {
@@ -32,6 +42,7 @@ function restartGame() {
 // Initializers
 renderSystem();
 updateWins();
+currentWord();
 updateLosses();
 updateGuessesLeft();
 updateGuessedLetters();
@@ -53,7 +64,7 @@ function renderSystem() {
             (playRand === 'k') || (playRand === 'l') || (playRand === 'm') || (playRand === 'n') || (playRand === 'o') ||
             (playRand === 'p') || (playRand === 'q') || (playRand === 'r') || (playRand === 's') || (playRand === 't') ||
             (playRand === 'u') || (playRand === 'v') || (playRand === 'w') || (playRand === 'x') || (playRand === 'y') ||
-            (playRand === 'z') || (playRand === 1) || (playRand === 2) || (playRand === 3) || (playRand === 4) || (playRand === 5) || (playRand === 6) || (playRand === 7) || (playRand === 8) || (playRand === 9) || (playRand === 0)) {
+            (playRand === 'z')) {
 
             if (randSystem != playRand) {
                 (guessesLeft-- && guessedLetters.push(playRand));
