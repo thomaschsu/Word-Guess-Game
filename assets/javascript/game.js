@@ -1,35 +1,79 @@
-// Start Game
-// User presses a letter and only a letter (NO NUMBERS) (convert letter to lowercase)
-// If letter is correct, blank underline changes to letter.
-// If letter is wrong, mark as wrong letter and add to area where it says letters already guessed (pushing it multiple times doesn't reduce the number of guesses remaining)
-// If run out of guess / player loses
-// If guess all letters, player wins
-// Restart game
-
+// Variables
+var letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+var guessedLetters = [];
 var wins = 0;
-var guessesRemaining = 12;
+var losses = 0;
+var guessesLeft = 9;
 
-var gameSystem = ['Xbox', 'PlayStation', 'Wii', 'GameBoy', 'SNES', 'Dreamcast', 'Gamecube', 'Sega Saturn', 'Neo Geo', 'NES', 'Atari'];
-
-// Game chooses current word from gameSystem array
-var currentWord = gameSystem[Math.floor(Math.random() * gameSystem.length)];
-
-console.log(currentWord);
-
-// Record user input
-document.onkeyup = function (event) {
-    var userInput = event.key;
-    console.log(userInput);
+// Functions that updates wins, losses, guessesleft
+function updateWins() {
+    document.querySelector("#wins").innerHTML = "Wins: " + wins;
 }
 
-// console.log(userInput);
+function updateLosses() {
+    document.querySelector("#losses").innerHTML = "Losses: " + losses;
+}
 
-var html =
-          "<p>Press any key to get started!</p>" +
-          "<p>Wins: " + wins + "</p>" +
-          "<p>Number of guesses remaining: " + guessesRemaining + "</p>";
-        //   "<p>losses: " + losses + "</p>" +
-        //   "<p>ties: " + ties + "</p>";
+function updateGuessesLeft() {
+    document.querySelector("#guessesLeft").innerHTML = "Guesses Left: " + guessesLeft;
+}
 
-// Set the inner HTML contents of the #game div to our html string
-document.querySelector("#game").innerHTML = html;
+function updateGuessedLetters() {
+    document.querySelector("#guessedLetters").innerHTML = "Your guesses so far: " + guessedLetters + " ";
+}
+
+function restartGame() {
+    guessesLeft = 9;
+    guessedLetters = [];
+}
+
+renderLetter();
+updateWins();
+updateLosses();
+updateGuessesLeft();
+updateGuessedLetters();
+restartGame();
+
+// Computer chooses random letter
+function renderLetter() {
+    var compRand = letters[Math.floor(Math.random() * letters.length)];
+    console.log(compRand);
+
+    // Player chooses random letter
+    document.onkeyup = function(event) {
+        var playRand = event.key;
+        console.log(playRand);
+
+        // If letter is wrong, mark down letter as previously guessed
+        if ((playRand === 'a') || (playRand === 'b') || (playRand === 'c') || (playRand === 'd') || (playRand === 'e') ||
+            (playRand === 'f') || (playRand === 'g') || (playRand === 'h') || (playRand === 'i') || (playRand === 'j') ||
+            (playRand === 'k') || (playRand === 'l') || (playRand === 'm') || (playRand === 'n') || (playRand === 'o') ||
+            (playRand === 'p') || (playRand === 'q') || (playRand === 'r') || (playRand === 's') || (playRand === 't') ||
+            (playRand === 'u') || (playRand === 'v') || (playRand === 'w') || (playRand === 'x') || (playRand === 'y') ||
+            (playRand === 'z')) {
+
+            if (compRand != playRand) {
+                (guessesLeft-- && guessedLetters.push(playRand));
+                updateGuessesLeft();
+                updateGuessedLetters();
+            }
+
+            // If letter right, mark as a win and restart
+            if (compRand == playRand) {
+                wins++;
+                updateWins();
+                renderLetter();
+            }
+
+            // If player exhausts all guesses, mark as a loss and restart
+            if (guessesLeft == 0) {
+                losses++;
+                updateLosses();
+                renderLetter();
+                restartGame();
+            }
+
+        }
+
+    }
+};
