@@ -8,6 +8,7 @@ var losses = 0;
 var guessesLeft = 15;
 var gameSystems = ['NES', 'SNES', 'Genesis', 'PlayStation', 'Dreamcast'];
 var blank = [];
+var randSystem;
 
 // Functions that updates wins, current word, losses, guessesleft, guessedletters
 function updateWins() {
@@ -47,14 +48,14 @@ updateGuessesLeft();
 updateGuessedLetters();
 restartGame();
 
-// Computer chooses random game console
 function renderSystem() {
-    var randSystem = gameSystems[Math.floor(Math.random() * gameSystems.length)];
-    console.log(randSystem);
 
-    // Converts string to lower case array
-    var blankWord = randSystem.toLocaleString().toLowerCase().split(" ");
-    console.log(blankWord);
+    // Computer chooses random game console
+    var randSystem = gameSystems[Math.floor(Math.random() * gameSystems.length)];
+
+    // Converts game console to lower case
+    var randSystemFix = randSystem.toLowerCase();
+    console.log(randSystemFix);
 
     // Computer outputs blank areas for current word
     for (var i = 0; i < randSystem.length; i++) {
@@ -75,20 +76,12 @@ function renderSystem() {
             (playRand === 'u') || (playRand === 'v') || (playRand === 'w') || (playRand === 'x') || (playRand === 'y') ||
             (playRand === 'z')) {
 
-            // If letter is wrong, mark down letter as previously guessed
-            if (randSystem != blankWord) {
+            // If user input is not found in the word, push it to guessed letters and remove a guess left
+            if (randSystemFix.indexOf(playRand) === -1) {
                 (guessedLetters.push(playRand) && guessesLeft--);
                 updateGuessesLeft();
                 updateGuessedLetters();
             }
-
-            // If letter right, mark as a win and restart
-            if (randSystem == playRand) {
-                wins++;
-                updateWins();
-                renderSystem();
-            }
-
             // If player exhausts all guesses, mark as a loss and restart
             if (guessesLeft == 0) {
                 losses++;
@@ -101,3 +94,10 @@ function renderSystem() {
 
     }
 };
+
+// // If letter right, mark as a win and restart
+// if (randSystem == playRand) {
+//     wins++;
+//     updateWins();
+//     renderSystem();
+// }
