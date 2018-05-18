@@ -1,4 +1,3 @@
-// Computer chooses random console
 // Computer outputs blank areas for current word
 // Computer tells you how many guesses remaining
 // After every guess, guess moves to already guessed or replaces a blank in the current word
@@ -11,7 +10,7 @@ var wins = 0;
 var losses = 0;
 var guessesLeft = 13;
 var gameSystems = ['NES', 'SNES', 'Genesis', 'PlayStation', 'Dreamcast'];
-var blank = "_";
+var blank = [];
 
 // Functions that updates wins, losses, guessesleft
 function updateWins() {
@@ -34,9 +33,12 @@ function updateGuessedLetters() {
     document.querySelector("#guessedLetters").innerHTML = "Your guesses so far: " + guessedLetters + " ";
 }
 
+// Restart Game
 function restartGame() {
     guessesLeft = 13;
     guessedLetters = [];
+    updateGuessesLeft();
+    updateGuessedLetters();
 }
 
 // Initializers
@@ -52,6 +54,11 @@ restartGame();
 function renderSystem() {
     var randSystem = gameSystems[Math.floor(Math.random() * gameSystems.length)];
     console.log(randSystem);
+
+
+// Converts string to array
+var blankWord = randSystem.split(" ");
+console.log(blankWord);
 
     // Player chooses letter
     document.onkeyup = function(event) {
