@@ -79,6 +79,7 @@ function renderSystem() {
             // If user input is correct, replace blank with word
             if (randSystemFix.indexOf(playRand) > -1) {
                 alert("You got a letter correct!");
+                var blank = playRand;
             }
             
                 // If user input is not found in the word, push it to guessed letters and remove a guess left
