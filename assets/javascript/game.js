@@ -1,5 +1,3 @@
-// Computer outputs blank areas for current word
-// Computer tells you how many guesses remaining
 // After every guess, guess moves to already guessed or replaces a blank in the current word
 // Play song after winning & change picture & update H1
 
@@ -8,7 +6,7 @@ var letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 
 var guessedLetters = [];
 var wins = 0;
 var losses = 0;
-var guessesLeft = 13;
+var guessesLeft = 15;
 var gameSystems = ['NES', 'SNES', 'Genesis', 'PlayStation', 'Dreamcast'];
 var blank = [];
 
@@ -30,12 +28,12 @@ function updateGuessesLeft() {
 }
 
 function updateGuessedLetters() {
-    document.querySelector("#guessedLetters").innerHTML = "Your guesses so far: " + guessedLetters + " ";
+    document.querySelector("#guessedLetters").innerHTML = "Your guesses so far: " + guessedLetters.join(', ') + " ";
 }
 
 // Restart Game
 function restartGame() {
-    guessesLeft = 13;
+    guessesLeft = 15;
     guessedLetters = [];
     updateGuessesLeft();
     updateGuessedLetters();
@@ -56,9 +54,15 @@ function renderSystem() {
     console.log(randSystem);
 
 
-// Converts string to array
-var blankWord = randSystem.split(" ");
+// Converts string to lower case array
+var blankWord = randSystem.toLocaleString().toLowerCase().split(" ");
 console.log(blankWord);
+
+// Computer outputs blank areas for current word
+for (i = 0; i < randSystem.length; i++) {
+    blank = blank + "_ ";
+}
+console.log(blank);
 
     // Player chooses letter
     document.onkeyup = function(event) {
