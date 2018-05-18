@@ -1,6 +1,5 @@
 // After every guess, guess moves to already guessed or replaces a blank in the current word
 // Play song after winning & change picture & update H1
-
 // Variables
 var letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 var guessedLetters = [];
@@ -10,7 +9,7 @@ var guessesLeft = 15;
 var gameSystems = ['NES', 'SNES', 'Genesis', 'PlayStation', 'Dreamcast'];
 var blank = [];
 
-// Functions that updates wins, losses, guessesleft
+// Functions that updates wins, current word, losses, guessesleft, guessedletters
 function updateWins() {
     document.querySelector("#wins").innerHTML = "Wins: " + wins;
 }
@@ -48,28 +47,27 @@ updateGuessesLeft();
 updateGuessedLetters();
 restartGame();
 
-// Computer chooses random console
+// Computer chooses random game console
 function renderSystem() {
     var randSystem = gameSystems[Math.floor(Math.random() * gameSystems.length)];
     console.log(randSystem);
 
+    // Converts string to lower case array
+    var blankWord = randSystem.toLocaleString().toLowerCase().split(" ");
+    console.log(blankWord);
 
-// Converts string to lower case array
-var blankWord = randSystem.toLocaleString().toLowerCase().split(" ");
-console.log(blankWord);
-
-// Computer outputs blank areas for current word
-for (i = 0; i < randSystem.length; i++) {
-    blank = blank + "_ ";
-}
-console.log(blank);
+    // Computer outputs blank areas for current word
+    for (var i = 0; i < randSystem.length; i++) {
+        blank = blank + "_ ";
+    }
 
     // Player chooses letter
     document.onkeyup = function(event) {
         var playRand = event.key;
         console.log(playRand);
 
-        // If letter is wrong, mark down letter as previously guessed
+
+        // Only play if user presses a letter
         if ((playRand === 'a') || (playRand === 'b') || (playRand === 'c') || (playRand === 'd') || (playRand === 'e') ||
             (playRand === 'f') || (playRand === 'g') || (playRand === 'h') || (playRand === 'i') || (playRand === 'j') ||
             (playRand === 'k') || (playRand === 'l') || (playRand === 'm') || (playRand === 'n') || (playRand === 'o') ||
@@ -77,8 +75,9 @@ console.log(blank);
             (playRand === 'u') || (playRand === 'v') || (playRand === 'w') || (playRand === 'x') || (playRand === 'y') ||
             (playRand === 'z')) {
 
-            if (randSystem != playRand) {
-                (guessesLeft-- && guessedLetters.push(playRand));
+            // If letter is wrong, mark down letter as previously guessed
+            if (randSystem != blankWord) {
+                (guessedLetters.push(playRand) && guessesLeft--);
                 updateGuessesLeft();
                 updateGuessedLetters();
             }
