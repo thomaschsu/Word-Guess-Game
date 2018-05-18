@@ -5,8 +5,8 @@ var letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 
 var guessedLetters = [];
 var wins = 0;
 var losses = 0;
-var guessesLeft = 15;
-var gameSystems = ['NES', 'SNES', 'Genesis', 'PlayStation', 'Dreamcast'];
+var guessesLeft = 10;
+var gameSystems = ['NES', 'SNES', 'Genesis', 'PlayStation', 'Dreamcast', 'GameBoy', 'XBOX'];
 var blank = [];
 var randSystem;
 
@@ -33,7 +33,7 @@ function updateGuessedLetters() {
 
 // Restart Game
 function restartGame() {
-    guessesLeft = 15;
+    guessesLeft = 10;
     guessedLetters = [];
     updateGuessesLeft();
     updateGuessedLetters();
@@ -76,7 +76,12 @@ function renderSystem() {
             (playRand === 'u') || (playRand === 'v') || (playRand === 'w') || (playRand === 'x') || (playRand === 'y') ||
             (playRand === 'z')) {
 
-            // If user input is not found in the word, push it to guessed letters and remove a guess left
+            // If user input is correct, replace blank with word
+            if (randSystemFix.indexOf(playRand) > -1) {
+                alert("You got a letter correct!");
+            }
+            
+                // If user input is not found in the word, push it to guessed letters and remove a guess left
             if (randSystemFix.indexOf(playRand) === -1) {
                 (guessedLetters.push(playRand) && guessesLeft--);
                 updateGuessesLeft();
@@ -94,10 +99,3 @@ function renderSystem() {
 
     }
 };
-
-// // If letter right, mark as a win and restart
-// if (randSystem == playRand) {
-//     wins++;
-//     updateWins();
-//     renderSystem();
-// }
