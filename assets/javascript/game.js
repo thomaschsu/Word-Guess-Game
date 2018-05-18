@@ -64,27 +64,28 @@ function renderSystem() {
 
     // Player chooses letter
     document.onkeyup = function(event) {
-        var playRand = event.key;
-        console.log(playRand);
+        var playGuess = event.key;
+        console.log(playGuess);
 
 
         // Only play if user presses a letter
-        if ((playRand === 'a') || (playRand === 'b') || (playRand === 'c') || (playRand === 'd') || (playRand === 'e') ||
-            (playRand === 'f') || (playRand === 'g') || (playRand === 'h') || (playRand === 'i') || (playRand === 'j') ||
-            (playRand === 'k') || (playRand === 'l') || (playRand === 'm') || (playRand === 'n') || (playRand === 'o') ||
-            (playRand === 'p') || (playRand === 'q') || (playRand === 'r') || (playRand === 's') || (playRand === 't') ||
-            (playRand === 'u') || (playRand === 'v') || (playRand === 'w') || (playRand === 'x') || (playRand === 'y') ||
-            (playRand === 'z')) {
+        if ((playGuess === 'a') || (playGuess === 'b') || (playGuess === 'c') || (playGuess === 'd') || (playGuess === 'e') ||
+            (playGuess === 'f') || (playGuess === 'g') || (playGuess === 'h') || (playGuess === 'i') || (playGuess === 'j') ||
+            (playGuess === 'k') || (playGuess === 'l') || (playGuess === 'm') || (playGuess === 'n') || (playGuess === 'o') ||
+            (playGuess === 'p') || (playGuess === 'q') || (playGuess === 'r') || (playGuess === 's') || (playGuess === 't') ||
+            (playGuess === 'u') || (playGuess === 'v') || (playGuess === 'w') || (playGuess === 'x') || (playGuess === 'y') ||
+            (playGuess === 'z')) {
 
             // If user input is correct, replace blank with word
-            if (randSystemFix.indexOf(playRand) > -1) {
-                alert("You got a letter correct!");
-                var blank = playRand;
+            if (randSystemFix.indexOf(playGuess) > -1) {
+                    var str = document.getElementById("currentWord").innerHTML; 
+                    var res = str.replace("_ ", playGuess);
+                    document.getElementById("currentWord").innerHTML = res;
             }
             
-                // If user input is not found in the word, push it to guessed letters and remove a guess left
-            if (randSystemFix.indexOf(playRand) === -1) {
-                (guessedLetters.push(playRand) && guessesLeft--);
+            // If user input is not found in the word, push it to guessed letters and remove a guess left
+            if (randSystemFix.indexOf(playGuess) === -1) {
+                (guessedLetters.push(playGuess) && guessesLeft--);
                 updateGuessesLeft();
                 updateGuessedLetters();
             }
@@ -100,3 +101,7 @@ function renderSystem() {
 
     }
 };
+
+// -- Bugs --
+// 1. Cannot target underline with letter from playGuess
+// 2. Duplicate letters can be inputted
