@@ -62,10 +62,6 @@ function renderSystem() {
         blank = blank + "_ ";
     }
 
-    for (var i = 0; i < randSystemFix.length; i++) {
-        blank = blank.replace("_", randSystemFix.charAt(i));
-    }
-
     // Player chooses letter
     document.onkeyup = function(event) {
         var playGuess = event.key;
@@ -81,6 +77,11 @@ function renderSystem() {
 
 
             // If user input is correct, replace blank with word
+            for (var i = 0; i < randSystemFix.length; i++) {
+                if (playGuess === randSystemFix.charAt(i)) {
+                    blank = blank.replace("_", playGuess);
+                }
+            }
 
             // If user input is not found in the word, push it to guessed letters and remove a guess left
             if (randSystemFix.indexOf(playGuess) === -1) {
