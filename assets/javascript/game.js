@@ -58,15 +58,18 @@ function renderSystem() {
     console.log(randSystemFix);
 
     // Computer outputs blank areas for current word
-    for (var i = 0; i < randSystem.length; i++) {
+    for (var i = 0; i < randSystemFix.length; i++) {
         blank = blank + "_ ";
+    }
+
+    for (var i = 0; i < randSystemFix.length; i++) {
+        blank = blank.replace("_", randSystemFix.charAt(i));
     }
 
     // Player chooses letter
     document.onkeyup = function(event) {
         var playGuess = event.key;
         console.log(playGuess);
-
 
         // Only play if user presses a letter
         if ((playGuess === 'a') || (playGuess === 'b') || (playGuess === 'c') || (playGuess === 'd') || (playGuess === 'e') ||
@@ -76,13 +79,9 @@ function renderSystem() {
             (playGuess === 'u') || (playGuess === 'v') || (playGuess === 'w') || (playGuess === 'x') || (playGuess === 'y') ||
             (playGuess === 'z')) {
 
+
             // If user input is correct, replace blank with word
-            if (randSystemFix.indexOf(playGuess) > -1) {
-                    var str = document.getElementById("currentWord").innerHTML; 
-                    var res = str.replace("_ ", playGuess);
-                    document.getElementById("currentWord").innerHTML = res;
-            }
-            
+
             // If user input is not found in the word, push it to guessed letters and remove a guess left
             if (randSystemFix.indexOf(playGuess) === -1) {
                 (guessedLetters.push(playGuess) && guessesLeft--);
