@@ -1,7 +1,6 @@
 body {
-    background-image: url("/assets/images/bg.jpg");
+    background-image: url("../images/bg.jpg");
     background-repeat: no-repeat;
-    background-attachment: fixed;
 }
 
 .footer-fix {
@@ -10,6 +9,5 @@ body {
 
 footer {
     border-top: 1px solid;
-    border-top-color: #2196F3;
-    background-color: #212121;
+    min-height: calc(85vh - 70px);
 }
