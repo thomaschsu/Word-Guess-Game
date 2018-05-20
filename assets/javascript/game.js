@@ -88,7 +88,7 @@ function renderSystem() {
             }
 
             // If user correctly guesses all letters, mark as win and restart game
-            if (blank.join() === randSystemFix) {
+            if (blank.join("") === randSystemFix) {
                 wins++;
                 updateWins();
                 restartWord();
