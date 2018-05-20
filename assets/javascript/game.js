@@ -31,6 +31,10 @@ function updateGuessedLetters() {
     document.querySelector("#guessedLetters").innerHTML = "Your guesses so far: " + guessedLetters.join(', ') + " ";
 }
 
+function restartWord() {
+    blank.splice(0, blank.length);
+}
+
 // Restart Game
 function restartGame() {
     guessesLeft = 10;
@@ -98,6 +102,7 @@ function renderSystem() {
             if (guessesLeft == 0) {
                 losses++;
                 updateLosses();
+                restartWord();
                 renderSystem();
                 restartGame();
                 currentWord();
@@ -109,5 +114,4 @@ function renderSystem() {
 };
 
 // -- Current Bugs --
-// 1. Previously underlined words stays after new blank word created.
-// 2. If user guesses all letters, mark as win and restart game.
+// 1. If user guesses all letters, mark as win and restart game.
