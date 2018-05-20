@@ -31,3 +31,7 @@ body {
 #losses, #guessedLetters {
     background-color:rgba(0,0,0,.05)
 }
+
+#wins, #losses, #guessesLeft, #guessedLetters {
+    padding: 5px 15px;
+}

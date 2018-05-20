@@ -18,15 +18,15 @@ function currentWord() {
 }
 
 function updateLosses() {
-    document.querySelector("#losses").innerHTML = "Losses: " + losses;
+    document.querySelector("#losses").innerHTML = "<b>Losses: </b>" + losses;
 }
 
 function updateGuessesLeft() {
-    document.querySelector("#guessesLeft").innerHTML = "Guesses Left: " + guessesLeft;
+    document.querySelector("#guessesLeft").innerHTML = "<b>Guesses Left: </b>" + guessesLeft;
 }
 
 function updateGuessedLetters() {
-    document.querySelector("#guessedLetters").innerHTML = "Your guesses so far: " + guessedLetters.join(' ') + " ";
+    document.querySelector("#guessedLetters").innerHTML = "<b>Your guesses so far: </b>" + guessedLetters.join(' ') + " ";
 }
 
 function restartWord() {
@@ -96,7 +96,7 @@ function renderSystem() {
             }
 
             // If user input is not found in the word, push it to guessed letters and remove a guess left
-            if (randSystemFix.indexOf(playGuess) === -1) {
+            if (randSystemFix.indexOf(playGuess) === -1 && blank.indexOf(playGuess) > -1) {
                 (guessedLetters.push(playGuess) && guessesLeft--);
                 updateGuessesLeft();
                 updateGuessedLetters();
