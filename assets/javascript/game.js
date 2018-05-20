@@ -6,7 +6,7 @@ var guessedLetters = [];
 var wins = 0;
 var losses = 0;
 var guessesLeft = 10;
-var gameSystems = ['NES', 'SNES', 'Genesis', 'PlayStation', 'Dreamcast', 'GameBoy', 'XBOX'];
+var gameSystems = ['NES', 'SNES', 'Genesis', 'PlayStation', 'Dreamcast', 'GameBoy', 'XBOX', 'Wii', 'PSP', 'Atari'];
 var blank = [];
 var randSystem;
 
@@ -16,7 +16,7 @@ function updateWins() {
 }
 
 function currentWord() {
-    document.querySelector("#currentWord").innerHTML = "Current Word: " + blank.join(" ")
+    document.querySelector("#currentWord").innerHTML = "Current Word: " + blank.join(" ");
 }
 
 function updateLosses() {
@@ -37,6 +37,7 @@ function restartGame() {
     guessedLetters = [];
     updateGuessesLeft();
     updateGuessedLetters();
+    currentWord();
 }
 
 // Initializers
@@ -61,7 +62,7 @@ function renderSystem() {
     for (var i = 0; i < randSystemFix.length; i++) {
         blank.push("_");
     }
-
+    
     // Player chooses letter
     document.onkeyup = function(event) {
         var playGuess = event.key;
@@ -76,15 +77,16 @@ function renderSystem() {
             (playGuess === 'z')) {
 
 
-           // If user input is correct, replace blank with word
-           for (var i = 0; i < randSystemFix.length; i++) {
-            if (playGuess === randSystemFix.charAt(i)) {
-                console.log("Correct guess!");
-                blank.splice(i, 1, playGuess);
-                console.log(blank)
-                document.querySelector("#currentWord").innerHTML = "Current Word: " + blank.join(" ");
+            // If user input is correct, replace blank with word
+            for (var i = 0; i < randSystemFix.length; i++) {
+                if (playGuess === randSystemFix.charAt(i)) {
+                    blank.splice(i, 1, playGuess);
+                    console.log(blank)
+                    document.querySelector("#currentWord").innerHTML = "Current Word: " + blank.join(" ");
+                }
             }
-        }
+
+            // If user correctly guesses all letters, mark as win and restart game
 
             // If user input is not found in the word, push it to guessed letters and remove a guess left
             if (randSystemFix.indexOf(playGuess) === -1) {
@@ -98,7 +100,7 @@ function renderSystem() {
                 updateLosses();
                 renderSystem();
                 restartGame();
-                blank = [];
+                currentWord();
             }
 
         }
@@ -106,6 +108,6 @@ function renderSystem() {
     }
 };
 
-// -- Bugs --
-// 1. Cannot target underline with letter from playGuess
-// 2. Duplicate letters can be inputted
+// -- Current Bugs --
+// 1. Previously underlined words stays after new blank word created.
+// 2. If user guesses all letters, mark as win and restart game.
