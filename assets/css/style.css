@@ -1,5 +1,5 @@
 .navbar {
-    background-color: #0277BD;
+    background-color: #2196F3;
     webkit-box-shadow: 0 5px 5px 0 rgba(0,0,0,0.15);
     box-shadow: 0 5px 5px 0 rgba(0,0,0,0.15);
     text-shadow: 1px 1px #000;
@@ -22,8 +22,12 @@ body {
 .footer {
     min-height: calc(65vh - 70px);
 }
-#message {
+
+#currentWord {
+    font-size: 40px;
     text-align: center;
-    font-weight: 700;
-    size: 40px;
+}
+
+#losses, #guessedLetters {
+    background-color:rgba(0,0,0,.05)
 }

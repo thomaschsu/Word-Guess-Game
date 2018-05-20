@@ -4,17 +4,17 @@ var guessedLetters = [];
 var wins = 0;
 var losses = 0;
 var guessesLeft = 10;
-var gameSystems = ['NES', 'SNES', 'Genesis', 'PlayStation', 'Dreamcast', 'GameBoy', 'XBOX', 'Wii', 'PSP', 'Atari', 'Switch'];
+var gameSystems = ['NES', 'SNES', 'Genesis', 'PlayStation', 'Dreamcast', 'GameBoy', 'XBOX', 'Wii', 'PSP', 'Atari', 'Switch', 'Pong', 'Coleco', 'Vectrex', 'WonderSwan', 'Nuon', 'HyperScan', 'Microvision', 'Colorvision', 'Nomad', 'Neogeo', 'GBA', 'DS', 'Gizmondo', 'Vita', 'Shield'];
 var blank = [];
 var randSystem;
 
 // Functions that updates wins, current word, losses, guessesleft, guessedletters
 function updateWins() {
-    document.querySelector("#wins").innerHTML = "Wins: " + wins;
+    document.querySelector("#wins").innerHTML = "<b>Wins: </b>" + wins;
 }
 
 function currentWord() {
-    document.querySelector("#currentWord").innerHTML = "Current Word: " + blank.join(" ");
+    document.querySelector("#currentWord").innerHTML = blank.join(" ");
 }
 
 function updateLosses() {
@@ -58,7 +58,6 @@ function renderSystem() {
 
     // Converts game console to lower case
     var randSystemFix = randSystem.toLowerCase();
-    console.log(randSystemFix);
 
     // Computer outputs blank areas for current word
     for (var i = 0; i < randSystemFix.length; i++) {
@@ -82,8 +81,7 @@ function renderSystem() {
             for (var i = 0; i < randSystemFix.length; i++) {
                 if (playGuess === randSystemFix.charAt(i)) {
                     blank.splice(i, 1, playGuess);
-                    console.log(blank);
-                    document.querySelector("#currentWord").innerHTML = "Current Word: " + blank.join(" ");
+                    document.querySelector("#currentWord").innerHTML = blank.join(" ");
                 }
             }
 
