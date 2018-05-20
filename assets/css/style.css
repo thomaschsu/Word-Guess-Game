@@ -1,3 +1,15 @@
 body {
-    background-color: #42A5F5;
+    background-image: url("/assets/images/bg.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.footer-fix {
+    min-height: calc(85vh - 70px);
+}
+
+footer {
+    border-top: 1px solid;
+    border-top-color: #2196F3;
+    background-color: #212121;
 }

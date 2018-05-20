@@ -1,12 +1,10 @@
-// After every guess, guess moves to already guessed or replaces a blank in the current word
-// Play song after winning & change picture & update H1
 // Variables
 var letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 var guessedLetters = [];
 var wins = 0;
 var losses = 0;
 var guessesLeft = 10;
-var gameSystems = ['NES', 'SNES', 'Genesis', 'PlayStation', 'Dreamcast', 'GameBoy', 'XBOX', 'Wii', 'PSP', 'Atari'];
+var gameSystems = ['NES', 'SNES', 'Genesis', 'PlayStation', 'Dreamcast', 'GameBoy', 'XBOX', 'Wii', 'PSP', 'Atari', 'Switch'];
 var blank = [];
 var randSystem;
 
@@ -108,6 +106,8 @@ function renderSystem() {
                 currentWord();
             }
 
+        } else {
+            alert("Press a letter from A-Z!");
         }
 
     }
