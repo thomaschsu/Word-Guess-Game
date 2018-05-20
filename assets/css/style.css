@@ -1,3 +1,7 @@
+.navbar {
+    background-color: #546E7A;
+}
+
 body {
     background-image: url("../images/bg.jpg");
     background-repeat: no-repeat;
