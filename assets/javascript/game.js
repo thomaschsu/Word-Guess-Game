@@ -83,15 +83,16 @@ function renderSystem() {
             for (var i = 0; i < randSystemFix.length; i++) {
                 if (playGuess === randSystemFix.charAt(i)) {
                     blank.splice(i, 1, playGuess);
-                    console.log(blank)
+                    console.log(blank);
+                    console.log(randSystemFix);
                     document.querySelector("#currentWord").innerHTML = "Current Word: " + blank.join(" ");
                 }
             }
 
             // If user correctly guesses all letters, mark as win and restart game
-            if (blank.toString() === randSystemFix.toString()) {
+            if (blank.toString() == randSystemFix) {
                 wins++;
-                updateWins;
+                updateWins();
                 restartWord();
                 renderSystem();
                 restartGame();
