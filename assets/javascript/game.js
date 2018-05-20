@@ -44,8 +44,8 @@ function restartGame() {
 
 // Initializers
 renderSystem();
-updateWins();
 currentWord();
+updateWins();
 updateLosses();
 updateGuessesLeft();
 updateGuessedLetters();
@@ -89,7 +89,7 @@ function renderSystem() {
             }
 
             // If user correctly guesses all letters, mark as win and restart game
-            if (blank.toString() === randSystemFix) {
+            if (blank.toString() === randSystemFix.toString()) {
                 wins++;
                 updateWins;
                 restartWord();
