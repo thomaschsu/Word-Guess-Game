@@ -16,7 +16,7 @@ function updateWins() {
 }
 
 function currentWord() {
-    document.querySelector("#currentWord").innerHTML = "Current Word: " + blank;
+    document.querySelector("#currentWord").innerHTML = "Current Word: " + blank.join(" ")
 }
 
 function updateLosses() {
@@ -59,7 +59,7 @@ function renderSystem() {
 
     // Computer outputs blank areas for current word
     for (var i = 0; i < randSystemFix.length; i++) {
-        blank = blank + "_ ";
+        blank.push("_");
     }
 
     // Player chooses letter
@@ -76,12 +76,15 @@ function renderSystem() {
             (playGuess === 'z')) {
 
 
-            // If user input is correct, replace blank with word
-            for (var i = 0; i < randSystemFix.length; i++) {
-                if (playGuess === randSystemFix.charAt(i)) {
-                    blank = blank.replace("_", playGuess);
-                }
+           // If user input is correct, replace blank with word
+           for (var i = 0; i < randSystemFix.length; i++) {
+            if (playGuess === randSystemFix.charAt(i)) {
+                console.log("Correct guess!");
+                blank.splice(i, 1, playGuess);
+                console.log(blank)
+                document.querySelector("#currentWord").innerHTML = "Current Word: " + blank.join(" ");
             }
+        }
 
             // If user input is not found in the word, push it to guessed letters and remove a guess left
             if (randSystemFix.indexOf(playGuess) === -1) {
@@ -95,6 +98,7 @@ function renderSystem() {
                 updateLosses();
                 renderSystem();
                 restartGame();
+                blank = [];
             }
 
         }
