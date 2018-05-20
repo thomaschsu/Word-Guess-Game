@@ -64,7 +64,7 @@ function renderSystem() {
     for (var i = 0; i < randSystemFix.length; i++) {
         blank.push("_");
     }
-    
+
     // Player chooses letter
     document.onkeyup = function(event) {
         var playGuess = event.key;
@@ -89,6 +89,14 @@ function renderSystem() {
             }
 
             // If user correctly guesses all letters, mark as win and restart game
+            if (blank.toString() === randSystemFix) {
+                wins++;
+                updateWins;
+                restartWord();
+                renderSystem();
+                restartGame();
+                currentWord();
+            }
 
             // If user input is not found in the word, push it to guessed letters and remove a guess left
             if (randSystemFix.indexOf(playGuess) === -1) {
@@ -107,11 +115,11 @@ function renderSystem() {
             }
 
         } else {
-            alert("Press a letter from A-Z!");
+            document.querySelector("#message").innerHTML = "Press a letter A-Z!";
         }
 
     }
 };
 
 // -- Current Bugs --
-// 1. If user guesses all letters, mark as win and restart game.
+// 1. If user guesses all letters correctly, mark as win and restart game.

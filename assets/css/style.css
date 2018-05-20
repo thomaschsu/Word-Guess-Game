@@ -11,3 +11,9 @@ footer {
     border-top: 1px solid;
     min-height: calc(85vh - 70px);
 }
+
+#message {
+    text-align: center;
+    font-weight: 700;
+    size: 40px;
+}
