@@ -26,7 +26,7 @@ function updateGuessesLeft() {
 }
 
 function updateGuessedLetters() {
-    document.querySelector("#guessedLetters").innerHTML = "Your guesses so far: " + guessedLetters.join(', ') + " ";
+    document.querySelector("#guessedLetters").innerHTML = "Your guesses so far: " + guessedLetters.join(' ') + " ";
 }
 
 function restartWord() {
@@ -102,6 +102,7 @@ function renderSystem() {
                 updateGuessesLeft();
                 updateGuessedLetters();
             }
+
             // If player exhausts all guesses, mark as a loss and restart
             if (guessesLeft == 0) {
                 losses++;
@@ -112,8 +113,6 @@ function renderSystem() {
                 currentWord();
             }
 
-        } else {
-            document.querySelector("#message").innerHTML = "Press a letter A-Z!";
         }
 
     }

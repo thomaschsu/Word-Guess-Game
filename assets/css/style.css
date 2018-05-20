@@ -1,16 +1,14 @@
 .navbar {
-    background-color: #66BB6A;
+    background-color: #0277BD;
     webkit-box-shadow: 0 5px 5px 0 rgba(0,0,0,0.15);
     box-shadow: 0 5px 5px 0 rgba(0,0,0,0.15);
     text-shadow: 1px 1px #000;
 }
-
 body {
     background-image: url("../images/bg.jpg");
     background-repeat: no-repeat;
     background-position: center;
 }
-
 .body-container {
     display:table;
     width:100%;
@@ -18,15 +16,12 @@ body {
     background-position:center top;
     height:350px;
 }
-
 .jumbotron {
     background-color: #FAFAFA;
 }
-
 .footer {
     min-height: calc(65vh - 70px);
 }
-
 #message {
     text-align: center;
     font-weight: 700;
