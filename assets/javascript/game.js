@@ -26,7 +26,7 @@ function updateGuessesLeft() {
 }
 
 function updateGuessedLetters() {
-    document.querySelector("#guessedLetters").innerHTML = "<b>Your guesses so far: </b>" + guessedLetters.join(' ') + " ";
+    document.querySelector("#guessedLetters").innerHTML = "<b>Letters you have guessed: </b>" + guessedLetters.join(' ') + " ";
 }
 
 function restartWord() {
@@ -96,7 +96,7 @@ function renderSystem() {
             }
 
             // If user input is not found in the word, push it to guessed letters and remove a guess left
-            if (randSystemFix.indexOf(playGuess) === -1 && blank.indexOf(playGuess) > -1) {
+            if (randSystemFix.indexOf(playGuess) === -1 && guessedLetters.indexOf(playGuess) === -1) {
                 (guessedLetters.push(playGuess) && guessesLeft--);
                 updateGuessesLeft();
                 updateGuessedLetters();
