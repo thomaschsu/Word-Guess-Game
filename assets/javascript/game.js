@@ -118,6 +118,3 @@ function renderSystem() {
 
     }
 };
-
-// -- Current Bugs --
-// 1. If user guesses all letters correctly, mark as win and restart game.
