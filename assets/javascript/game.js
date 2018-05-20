@@ -87,6 +87,7 @@ function renderSystem() {
 
             // If user correctly guesses all letters, mark as win and restart game
             if (blank.join("") === randSystemFix) {
+                alert("You Win! :D");
                 wins++;
                 updateWins();
                 restartWord();
@@ -104,6 +105,7 @@ function renderSystem() {
 
             // If player exhausts all guesses, mark as a loss and restart
             if (guessesLeft == 0) {
+                alert("You lose. :(");
                 losses++;
                 updateLosses();
                 restartWord();
