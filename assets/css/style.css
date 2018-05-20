@@ -1,19 +1,27 @@
 .navbar {
-    background-color: #546E7A;
+    background-color: #66BB6A
 }
 
 body {
     background-image: url("../images/bg.jpg");
     background-repeat: no-repeat;
+    background-position: center;
 }
 
-.footer-fix {
-    min-height: calc(85vh - 70px);
+.body-container {
+    display:table;
+    width:100%;
+    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('landingpagepic.jpg');
+    background-position:center top;
+    height:350px;
 }
 
-footer {
-    border-top: 1px solid;
-    min-height: calc(85vh - 70px);
+.jumbotron {
+    background-color: #FAFAFA;
+}
+
+.footer {
+    min-height: calc(65vh - 70px);
 }
 
 #message {

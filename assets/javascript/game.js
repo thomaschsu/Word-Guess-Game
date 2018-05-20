@@ -68,7 +68,6 @@ function renderSystem() {
     // Player chooses letter
     document.onkeyup = function(event) {
         var playGuess = event.key;
-        console.log(playGuess);
 
         // Only play if user presses a letter
         if ((playGuess === 'a') || (playGuess === 'b') || (playGuess === 'c') || (playGuess === 'd') || (playGuess === 'e') ||
@@ -83,8 +82,6 @@ function renderSystem() {
             for (var i = 0; i < randSystemFix.length; i++) {
                 if (playGuess === randSystemFix.charAt(i)) {
                     blank.splice(i, 1, playGuess);
-                    console.log(blank);
-                    console.log(randSystemFix);
                     document.querySelector("#currentWord").innerHTML = "Current Word: " + blank.join(" ");
                 }
             }
