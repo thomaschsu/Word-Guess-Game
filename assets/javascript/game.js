@@ -1,4 +1,5 @@
 // Variables
+var letters = "abcdefghijklmnopqrstuvwxyz";
 var guessedLetters = [];
 var wins = 0;
 var losses = 0;
@@ -68,13 +69,7 @@ function renderSystem() {
         var playGuess = event.key;
 
         // Only play if user presses a letter
-        if ((playGuess === 'a') || (playGuess === 'b') || (playGuess === 'c') || (playGuess === 'd') || (playGuess === 'e') ||
-            (playGuess === 'f') || (playGuess === 'g') || (playGuess === 'h') || (playGuess === 'i') || (playGuess === 'j') ||
-            (playGuess === 'k') || (playGuess === 'l') || (playGuess === 'm') || (playGuess === 'n') || (playGuess === 'o') ||
-            (playGuess === 'p') || (playGuess === 'q') || (playGuess === 'r') || (playGuess === 's') || (playGuess === 't') ||
-            (playGuess === 'u') || (playGuess === 'v') || (playGuess === 'w') || (playGuess === 'x') || (playGuess === 'y') ||
-            (playGuess === 'z')) {
-
+        if (letters.indexOf(playGuess) > -1) {
 
             // If user input is correct, replace blank with word
             for (var i = 0; i < randSystemFix.length; i++) {
