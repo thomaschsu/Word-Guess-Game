@@ -1,4 +1,3 @@
-This is a word guessing game that uses JavaScript, HTML, and CSS to function.
 # Word Guess Game
 
 ### Description
